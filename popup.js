@@ -22,6 +22,8 @@ var PhotoGenerator = {
   tumblr_: 'http://api.tumblr.com/v2/blog/n-i-c-e-d-r-e-a-m.tumblr.com/posts/photo?' +
            'api_key=' + 'rM6YqOaqy7HEizZNzLEGZYtTEgIB3Vc65zrlom2qyEPJV775gs',
 
+  book_: 'http://m.kyobobook.com/booklog/reviews/KOR/9791185502076?size=10&_=1421371393574',
+
   /**
    * Sends an XHR GET request to grab photos of lots and lots of kittens. The
    * XHR's 'onload' event is hooks up to the 'showPhotos_' method.
@@ -46,13 +48,12 @@ var PhotoGenerator = {
    */
   showPhotos_: function (e) {
     var results = JSON.parse(e.target.responseText);
-    var posts = results['response']['posts'];
+    console.log(results);
 
-    // var kittens = e.target.responseXML.querySelectorAll('photo');
+    var posts = results['response']['posts'];
     for (var i = 0; i < posts.length; i++) {
       var img = document.createElement('img');
       img.src = this.constructPhotoURL_(posts[i]);
-      // img.setAttribute('alt', photos[i].getAttribute('title'));
       document.body.appendChild(img);
     }
   },
